@@ -22,6 +22,25 @@ namespace final_project.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
+            modelBuilder.Entity("final_project.Models.Category", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("id"));
+
+                    b.Property<string>("category")
+                        .HasColumnType("text");
+
+                    b.Property<string>("image_url")
+                        .HasColumnType("text");
+
+                    b.HasKey("id");
+
+                    b.ToTable("Categories");
+                });
+
             modelBuilder.Entity("final_project.Models.Product", b =>
                 {
                     b.Property<int>("id")
@@ -30,11 +49,11 @@ namespace final_project.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("id"));
 
-                    b.Property<string>("categories")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<int?>("categoryid")
+                        .HasColumnType("integer");
 
                     b.Property<string>("description")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("image_url")
@@ -48,14 +67,12 @@ namespace final_project.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("size")
-                        .IsRequired()
-                        .HasColumnType("text");
-
                     b.Property<int>("stock")
                         .HasColumnType("integer");
 
                     b.HasKey("id");
+
+                    b.HasIndex("categoryid");
 
                     b.ToTable("Products");
                 });
@@ -93,6 +110,10 @@ namespace final_project.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("text");
@@ -120,6 +141,20 @@ namespace final_project.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("final_project.Models.Product", b =>
+                {
+                    b.HasOne("final_project.Models.Category", "category")
+                        .WithMany("products")
+                        .HasForeignKey("categoryid");
+
+                    b.Navigation("category");
+                });
+
+            modelBuilder.Entity("final_project.Models.Category", b =>
+                {
+                    b.Navigation("products");
                 });
 #pragma warning restore 612, 618
         }

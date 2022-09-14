@@ -11,15 +11,15 @@ namespace final_project.Models
 
         public string product_name { get; set; } = string.Empty;
 
-        public string? description { get; set; }
+        public string description { get; set; } = string.Empty;
 
-        public string size { get; set; } = string.Empty;
+        // public string size { get; set; } = string.Empty;
 
         public int price { get; set; }
 
         public int stock { get; set; }
 
-        public string categories { get; set; } = string.Empty;
+        public Category? category { get; set; }
 
         public string image_url { get; set; } = string.Empty;
 

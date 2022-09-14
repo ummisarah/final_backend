@@ -14,4 +14,10 @@ namespace final_project.Models
 
         public string expired_at { get; set; } = string.Empty;
     }
+    public class TokenData
+    {
+         public string? id { get; set; }
+
+        public string username { get; set; } = string.Empty;
+    }
 }

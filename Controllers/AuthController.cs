@@ -22,10 +22,11 @@ namespace final_project.Controllers
         public async Task<ActionResult<ServiceResponse<int>>> Register(UserRegisterDTO request)
         {
             var response = await _authRepo.Register(
-                request.Name, 
+                request.Name!, 
                 request.Username,
-                request.email,
-                request.phone_number,
+                request.Email,
+                request.PhoneNumber,
+                request.Address,
                 request.Password
             );
             if(!response.Success)
@@ -45,5 +46,11 @@ namespace final_project.Controllers
             }
             return Ok(response);
         }
+
+        // [HttpGet("get_profil")]
+        // public async Task<ActionResult<ServiceResponse<List<GetUserDTO>>>> GetProfile()
+        // {
+        //     return Ok(await _authRepo.UserExists());
+        // }
     }
 }

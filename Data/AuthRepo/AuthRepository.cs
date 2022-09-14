@@ -4,6 +4,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using final_project.Dtos.User;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 
@@ -51,7 +52,7 @@ namespace final_project.Data
             return response;
         }
 
-        public async Task<ServiceResponse<int>> Register(string name, string username, string email, string phoneNumber, string password)
+        public async Task<ServiceResponse<int>> Register(string name, string username, string email, string phoneNumber, string address, string password)
         {
             
             ServiceResponse<int> response = new ServiceResponse<int>();
@@ -70,6 +71,7 @@ namespace final_project.Data
                 Username = username,
                 Email = email,
                 PhoneNumber = phoneNumber,
+                Address = address,
                 PasswordHash = passwordHash,
                 PasswordSalt = passwordSalt
                 
@@ -110,16 +112,51 @@ namespace final_project.Data
             }
         }
 
-        private string CreateToken(User user)
+        // public async Task<ServiceResponse<GetUserDTO>> GetUserDTO(int id, HttpContext httpContext)
+        // {
+        //     var tokenData = new Jwt().GetTokenClaim(httpContext);
+        //     id = int.Parse(tokenData.id);
+
+        //     var response = new ServiceResponse<GetUserDTO>();
+
+        //     var userData = await _context.Users.Where(u => u.Id == id).FirstOrDefaultAsync();
+            
+        //     if(userData!=null)
+        //     {
+        //         GetUserDTO userDTO = new GetUserDTO
+        //         {
+        //             Name = userData.Name,
+        //             Username = userData.Username,
+        //             email = userData.Email,
+        //             phone_number = userData.PhoneNumber,
+        //             Address = userData.Address
+        //         };
+
+        //         response.Data = userDTO;
+        //         response.Message = "Successfully";
+
+        //         return response;
+        //     }
+
+        //     response.Success = false;
+        //     response.Message = "False Token";
+        //     return response;
+        // }
+
+        public string CreateToken(User user)
         {
+            
             List<Claim> claims = new List<Claim>
             {
                 new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
                 new Claim(ClaimTypes.Name, user.Username)
             };
+
+            
             
             SymmetricSecurityKey key = new SymmetricSecurityKey(System.Text.Encoding.UTF8
                 .GetBytes(_configuration.GetSection("AppSettings:Token").Value));
+                //.GetBytes(_configuration.GetSection("AppSettings:Token").Value));
 
             SigningCredentials creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
 
@@ -134,6 +171,15 @@ namespace final_project.Data
             SecurityToken token = tokenHandler.CreateToken(tokenDescriptor);
 
             return tokenHandler.WriteToken(token); //Token
+        }
+
+        public async Task<ServiceResponse<string>> GetFirstName(int id)
+        {
+            var response = new ServiceResponse<string>();
+            var result = await _context.Users
+                .FirstOrDefaultAsync(item => item.Id == id);
+            response.Data = result.Name;
+            return response;
         }
     }
 }
