@@ -8,10 +8,9 @@ namespace final_project.Data
 {
     public interface IAuthRepository
     {
-        Task<ServiceResponse<int>> Register(string name, string username, string email, string phoneNumber, string address, string password);
-        Task<ServiceResponse<string>> Login(string username, string password);
+        Task<ServiceResponse<int>> Register(UserRegisterDTO register);
+        Task<ServiceResponse<string>> Login(UserLoginDTO login);
         Task<bool> UserExists(string username);
-        // Task<ServiceResponse<GetUserDTO>> GetProfile();
-        Task<ServiceResponse<string>> GetFirstName(int id);
+        Task<ServiceResponse<UserDTO>> GetUser();
     }
 };

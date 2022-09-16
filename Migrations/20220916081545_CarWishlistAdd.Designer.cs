@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using final_project.Data;
@@ -11,9 +12,10 @@ using final_project.Data;
 namespace final_project.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20220916081545_CarWishlistAdd")]
+    partial class CarWishlistAdd
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -270,13 +272,13 @@ namespace final_project.Migrations
 
             modelBuilder.Entity("final_project.Models.Wishlist", b =>
                 {
-                    b.HasOne("final_project.Models.User", "user_wishlist")
+                    b.HasOne("final_project.Models.User", "use_wishlist")
                         .WithOne("wishlist")
                         .HasForeignKey("final_project.Models.Wishlist", "userId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("user_wishlist");
+                    b.Navigation("use_wishlist");
                 });
 
             modelBuilder.Entity("final_project.Models.WishlistModel.WishlistItem", b =>

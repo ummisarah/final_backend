@@ -12,6 +12,6 @@ namespace final_project.Dtos.User
         public string Email {get; set;} = string.Empty;
         public string PhoneNumber {get; set;} = string.Empty;
         public string Address {get; set;} = string.Empty;
-        public string Password {get; set;}
+        public string Password {get; set;} = "12345678";
     }
 }

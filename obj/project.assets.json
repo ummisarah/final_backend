@@ -2835,11 +2835,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\bsi80138\\Downloads\\Training\\dotnetrpg-master\\dotnet-rpg.csproj",
+      "projectUniqueName": "C:\\Users\\bsi80138\\Downloads\\Training\\Final Project\\dotnet-rpg.csproj",
       "projectName": "dotnet-rpg",
-      "projectPath": "C:\\Users\\bsi80138\\Downloads\\Training\\dotnetrpg-master\\dotnet-rpg.csproj",
+      "projectPath": "C:\\Users\\bsi80138\\Downloads\\Training\\Final Project\\dotnet-rpg.csproj",
       "packagesPath": "C:\\Users\\bsi80138\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\bsi80138\\Downloads\\Training\\dotnetrpg-master\\obj\\",
+      "outputPath": "C:\\Users\\bsi80138\\Downloads\\Training\\Final Project\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\bsi80138\\AppData\\Roaming\\NuGet\\NuGet.Config"

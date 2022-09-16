@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using final_project.Models.CartModel;
 
 namespace final_project.Models
 {
@@ -13,10 +14,6 @@ namespace final_project.Models
         
         public int userId {get; set;}
 
-        public List<Product>? product { get; set; }
-
-        public int quantity { get; set; }
-
-        public string? notes { get; set; }
+        public List<CartItem>? cartItems { get; set; }
     }
 }

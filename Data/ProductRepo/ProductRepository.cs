@@ -15,36 +15,32 @@ namespace final_project.Data.ProductRepo
             _configuration = configuration;
             _context = context;
         }
-        // public async Task<ServiceResponse<int>> PostProduct(string product_name, string description, int price, int stock, Category category, string image_url)
-        // {
-        //     var response = new ServiceResponse<int>();
-        //     var product = await _context.Products.FirstOrDefaultAsync(item => item.product_name == product_name);
+        public async Task<ServiceResponse<List<Product>>> GetAllItem()
+        {
+            var response = new ServiceResponse<List<Product>>();
+            var allItem = await _context.Products
+                .Include(item => item.category)
+                .ToListAsync();
 
-        //     if(product == null)
-        //     {
-        //         Product newArrival = new Product
-        //         {
-        //             product_name = product_name,
-        //             description = description,
-        //             // size = size,
-        //             price = price,
-        //             stock = stock,
-        //             new Category {category = category},
-        //             image_url = image_url
-        //         };
+            response.Data = allItem;
+            response.Message = "Data Retrieved";
 
-        //         _context.Add(newArrival);
-        //         await _context.SaveChangesAsync();
+            return response;
+        }
 
-        //         response.Data = newArrival.id;
-        //         response.Success = true;
-        //         response.Message = "Product Added!";
-        //         return response;
-        //     }
+        public async Task<ServiceResponse<Product>> GetItembyId(int id)
+        {
+            var response = new ServiceResponse<Product> ();
 
-        //     response.Success = false;
-        //     response.Message = "Product Already Exist!";
-        //     return response;
-        // }
+            var item = await _context.Products
+                .Include(item => item.category)
+                .Where(item => item.id == id)
+                .FirstOrDefaultAsync();
+
+            response.Data = item;
+            response.Message = "Data Retrieved";
+
+            return response;
+        }
     }
 }

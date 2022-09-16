@@ -2,6 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using final_project.Models.CartModel;
+using final_project.Models.WishlistModel;
+// using final_project.Models.CartModel;
 using Microsoft.EntityFrameworkCore;
 
 namespace final_project.Data
@@ -27,5 +30,9 @@ namespace final_project.Data
         public DbSet<Token> Tokens {get; set;}
         public DbSet<Product> Products {get; set;}
         public DbSet<Category> Categories {get; set;}
+        public DbSet<Cart> Carts {get; set;}
+        public DbSet<CartItem> CartItems {get; set;}
+        public DbSet<Wishlist> Wishlists {get; set;}
+        public DbSet<WishlistItem> WishlistItems {get; set;}
     }
 }

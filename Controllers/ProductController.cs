@@ -17,6 +17,13 @@ namespace final_project.Controllers
             _productRepo = productRepo;
         }
 
+        [HttpGet("GetAllItem")]
+        public async Task<ActionResult<ServiceResponse<List<Product>>>> GetAllItem()
+        {
+            var response = await _productRepo.GetAllItem();
+            
+            return Ok(response);
+        }
         // [HttpPost("AddNewProduct")]
         // public async  Task<ActionResult<ServiceResponse<int>>> PostProduct(Product request)
         // {

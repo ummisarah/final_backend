@@ -19,16 +19,9 @@ namespace final_project.Controllers
         }
 
         [HttpPost("register")]
-        public async Task<ActionResult<ServiceResponse<int>>> Register(UserRegisterDTO request)
+        public async Task<ActionResult<ServiceResponse<int>>> Register(UserRegisterDTO register)
         {
-            var response = await _authRepo.Register(
-                request.Name!, 
-                request.Username,
-                request.Email,
-                request.PhoneNumber,
-                request.Address,
-                request.Password
-            );
+            var response = await _authRepo.Register(register);
             if(!response.Success)
             {
                 return BadRequest(response);
@@ -37,9 +30,9 @@ namespace final_project.Controllers
         }
 
         [HttpPost("login")]
-        public async Task<ActionResult<ServiceResponse<string>>> Login(UserLoginDTO request)
+        public async Task<ActionResult<ServiceResponse<string>>> Login(UserLoginDTO login)
         {
-            var response = await _authRepo.Login(request.Username, request.Password);
+            var response = await _authRepo.Login(login);
             if(!response.Success)
             {
                 return BadRequest(response);
@@ -47,10 +40,10 @@ namespace final_project.Controllers
             return Ok(response);
         }
 
-        // [HttpGet("get_profil")]
-        // public async Task<ActionResult<ServiceResponse<List<GetUserDTO>>>> GetProfile()
-        // {
-        //     return Ok(await _authRepo.UserExists());
-        // }
+        [HttpGet("get_profil")]
+        public async Task<ActionResult<ServiceResponse<UserDTO>>> GetUser()
+        {
+            return Ok(await _authRepo.GetUser());
+        }
     }
 }
