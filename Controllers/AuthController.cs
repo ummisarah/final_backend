@@ -23,7 +23,7 @@ namespace final_project.Controllers
             _authRepo = authRepo;
         }
         [AllowAnonymous]
-        [HttpPost("register")]
+        [HttpPost("Register")]
         public async Task<ActionResult<ServiceResponse<int>>> Register(UserRegisterDTO register)
         {
             var response = await _authRepo.Register(register);
@@ -35,7 +35,7 @@ namespace final_project.Controllers
             //return Ok(await _authRepo.Register(register));
         }
         [AllowAnonymous]
-        [HttpPost("login")]
+        [HttpPost("Login")]
         public async Task<ActionResult<ServiceResponse<string>>> Login(UserLoginDTO login)
         {
             var response = await _authRepo.Login(login);
@@ -46,7 +46,7 @@ namespace final_project.Controllers
             return Ok(response);
         }
 
-        [HttpGet("get_profil")]
+        [HttpGet("GetProfile")]
         public async Task<ActionResult<ServiceResponse<UserDTO>>> GetUser()
         {
             return Ok(await _authRepo.GetUser());

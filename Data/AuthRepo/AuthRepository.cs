@@ -165,12 +165,12 @@ namespace final_project.Data
         {
 
             var response = new ServiceResponse<UserDTO>();
-            Console.WriteLine("123*******************");
+            // Console.WriteLine("123*******************");
             var test = GetUserId();
             Console.WriteLine(test);
             User? result = await _context.Users
                 .FirstOrDefaultAsync(item => item.Id == GetUserId());
-            Console.WriteLine("*******************");
+            // Console.WriteLine("*******************");
             UserDTO userDTO = _mapper.Map<UserDTO>(result);
             response.Data = userDTO;
             return response;

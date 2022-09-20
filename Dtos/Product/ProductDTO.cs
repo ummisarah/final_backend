@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using final_project.Models;
 
 namespace final_project.Dtos.Product
 {
@@ -17,5 +18,6 @@ namespace final_project.Dtos.Product
         public int stock { get; set; }
 
         public string image_url { get; set; } = string.Empty;
+        // public Category category { get; set; }
     }
 }

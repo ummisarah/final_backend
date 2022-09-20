@@ -78,22 +78,36 @@ namespace final_project.Data.CartRepo
             
             CartItem? item = await _context.CartItems
                 .Where(cart => cart.id == cartItemDTO.id).FirstOrDefaultAsync();
+            if (cartItemDTO.quantity == 0)
+                {
+                    _context.Remove(item);
+                }
             item.quantity = cartItemDTO.quantity;
+            item.notes = cartItemDTO.notes;
             await _context.SaveChangesAsync();
             response.Data = item;
             return response;
         }
 
-        public async Task<ServiceResponse<CartItem>> DeleteCart(int id)
+        public async Task<ServiceResponse<CartItemDTO>> DeleteCart(int id)
         {
-            var response = new ServiceResponse<CartItem>();
+            var response = new ServiceResponse<CartItemDTO>();
 
             CartItem? item = await _context.CartItems
                 .Where(cart => cart.id == id).FirstOrDefaultAsync();
+            
+            if(item != null)
+            {
+                CartItemDTO? cartItem = _mapper.Map<CartItemDTO>(item);
                 _context.CartItems.Remove(item);
                 await _context.SaveChangesAsync();
-                response.Data = item;
+                response.Data = cartItem;
                 return response;
+            }
+
+            response.Success = false;
+            response.Message = "ID not found";
+            return response;
         }
 
         public Task<ServiceResponse<AddToCartDTO>> AddCart(CartItem cartItem)
