@@ -50,6 +50,8 @@ namespace final_project.Data
                     expired_at = DateTime.Now.AddDays(1).ToString()
                 };
 
+                UserDTO? userDTO = _mapper.Map<UserDTO>(user);                
+                userDTO.Token = token.token;
                 _context.Tokens.Add(token);
                 await _context.SaveChangesAsync();
 
@@ -175,20 +177,5 @@ namespace final_project.Data
             response.Data = userDTO;
             return response;
         }
-
-        // Task<ServiceResponse<int>> IAuthRepository.Register(UserRegisterDTO register)
-        // {
-        //     throw new NotImplementedException();
-        // }
-
-        // Task<ServiceResponse<string>> IAuthRepository.Login(UserLoginDTO login)
-        // {
-        //     throw new NotImplementedException();
-        // }
-
-        // Task<ServiceResponse<UserDTO>> IAuthRepository.GetUser()
-        // {
-        //     throw new NotImplementedException();
-        // }
     }
 }

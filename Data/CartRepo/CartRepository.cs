@@ -47,19 +47,9 @@ namespace final_project.Data.CartRepo
         {
             var response = new ServiceResponse<AddToCartDTO>();
 
-            
-            // CartItem item = new CartItem
-            // {
-            //     productId = addToCartDTO.productId,
-            //     quantity = addToCartDTO.quantity,
-            //     notes = addToCartDTO.notes
-            // };
-
-            // _context.CartItems.Add(item);
-
             CartItem cartItem = _mapper.Map<CartItem>(addToCartDTO);
             Cart? cartUser = await _context.Carts
-                .Where(u => u.Id == addToCartDTO.CartId)
+                .Where(u => u.Id == addToCartDTO.Id)
                 .FirstOrDefaultAsync();
 
             cartItem.Cart = cartUser;
@@ -108,11 +98,6 @@ namespace final_project.Data.CartRepo
             response.Success = false;
             response.Message = "ID not found";
             return response;
-        }
-
-        public Task<ServiceResponse<AddToCartDTO>> AddCart(CartItem cartItem)
-        {
-            throw new NotImplementedException();
         }
     }
 }

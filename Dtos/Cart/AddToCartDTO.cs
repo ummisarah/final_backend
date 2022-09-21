@@ -7,7 +7,7 @@ namespace final_project.Dtos.Cart
 {
     public class AddToCartDTO
     {
-        public int CartId { get; set; }
+        public int Id { get; set; }
         
         public int ProductId { get; set; }
 

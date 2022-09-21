@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using final_project.Dtos;
 using final_project.Dtos.Cart;
+using final_project.Dtos.Category;
 using final_project.Dtos.Product;
 using final_project.Dtos.User;
 using final_project.Dtos.Wishlist;
@@ -24,6 +25,7 @@ namespace final_project
             CreateMap<AddToCartDTO, CartItem>();
             CreateMap<CartItem, CartItemDTO>();
             CreateMap<WishlistItem, WishlistDTO>();
+            CreateMap<Category, CategoryDTO>();
         }
     }
 }

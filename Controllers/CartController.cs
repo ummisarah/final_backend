@@ -33,7 +33,7 @@ namespace final_project.Controllers
         }
 
         [AllowAnonymous]
-        [HttpGet("GetAllCart")]
+        [HttpGet("GetCart")]
         public async Task<ActionResult<ServiceResponse<Cart>>> GetAllCart()
         {
             var response = await _cartRepository.GetAllCart();
@@ -41,7 +41,7 @@ namespace final_project.Controllers
         }
 
         [AllowAnonymous]
-        [HttpPost("EditCart")]
+        [HttpPost("EditCartItem")]
         public async Task<ActionResult<ServiceResponse<CartItem>>> EditCart(CartItemDTO cartItemDTO)
         {
             var response = await _cartRepository.EditCart(cartItemDTO);

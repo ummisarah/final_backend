@@ -14,5 +14,6 @@ namespace final_project.Dtos.User
         public string PhoneNumber { get; set; } = string.Empty;
         public string Address { get; set; } = string.Empty;
         public string ImageURL { get; set; } = string.Empty;
+        public string Token {get; set;}
     }   
 }

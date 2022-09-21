@@ -7,6 +7,7 @@ using final_project.Data.ProductRepo;
 using final_project.Data.WishlistRepo;
 using final_project.Dtos;
 using final_project.Dtos.Cart;
+using final_project.Dtos.Product;
 using final_project.Models;
 using final_project.Models.CartModel;
 using final_project.Models.WishlistModel;
@@ -25,12 +26,22 @@ namespace final_project.Controllers
             
         }
 
-        [HttpGet("GetAllItem")]
-        public async Task<ActionResult<ServiceResponse<List<Product>>>> GetAllItem()
+        [HttpGet("GetAllProduct")]
+        public async Task<ActionResult<ServiceResponse<List<ProductDTO>>>> GetAllItem()
         {
             var response = await _productRepo.GetAllItem();
             
             return Ok(response);
         }
+
+        [HttpGet("GetProductItemId")]
+        public async Task<ActionResult<ServiceResponse<List<ProductDTO>>>> GetItembyId(int id)
+        {
+            var response = await _productRepo.GetItembyId(id);
+            
+            return Ok(response);
+        }
+
+        
     }
 }
