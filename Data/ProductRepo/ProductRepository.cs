@@ -35,7 +35,7 @@ namespace final_project.Data.ProductRepo
         {
             var response = new ServiceResponse<List<ProductDTO>>();
             List<Product>? allItem = await _context.Products
-                .Include(item => item.category)
+                .Include(item => item.Category)
                 .ToListAsync();
             //var abc = _mapper.Map<ProductDTO>(allItem);
             response.Data = allItem.Select(item => _mapper.Map<ProductDTO>(item)).ToList();
@@ -49,8 +49,8 @@ namespace final_project.Data.ProductRepo
             var response = new ServiceResponse<Product> ();
 
             var item = await _context.Products
-                .Include(item => item.category)
-                .Where(item => item.id == id)
+                .Include(item => item.Category)
+                .Where(item => item.Id == id)
                 .FirstOrDefaultAsync();
 
             response.Data = item;

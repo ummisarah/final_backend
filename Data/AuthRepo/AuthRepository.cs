@@ -85,7 +85,7 @@ namespace final_project.Data
             (
                 new Cart
                 {
-                    user = userCart
+                    User = userCart
                 }
             );
 

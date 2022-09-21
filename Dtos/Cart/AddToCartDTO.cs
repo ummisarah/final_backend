@@ -7,12 +7,12 @@ namespace final_project.Dtos.Cart
 {
     public class AddToCartDTO
     {
-        public int cartId { get; set; }
+        public int CartId { get; set; }
         
-        public int productId { get; set; }
+        public int ProductId { get; set; }
 
-        public int quantity { get; set; } = 1;
+        public int Quantity { get; set; } = 1;
 
-        public string? notes { get; set; }
+        public string? Notes { get; set; }
     }
 }

@@ -9,15 +9,15 @@ namespace final_project.Dtos.Product
     public class ProductDTO
     {
 
-        public string product_name { get; set; } = string.Empty;
+        public string ProductName { get; set; } = string.Empty;
 
-        public string description { get; set; } = string.Empty;
+        public string Description { get; set; } = string.Empty;
 
-        public int price { get; set; }
+        public int Price { get; set; }
 
-        public int stock { get; set; }
+        public int Stock { get; set; }
 
-        public string image_url { get; set; } = string.Empty;
+        public string ImageURL { get; set; } = string.Empty;
         // public Category category { get; set; }
     }
 }

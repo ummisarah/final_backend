@@ -31,7 +31,7 @@ namespace final_project.Data.WishlistRepo
 
             WishlistItem wishlistItem = new WishlistItem 
             {
-                productId = productId
+                ProductId = productId
             };
             
 
@@ -74,7 +74,7 @@ namespace final_project.Data.WishlistRepo
             var response = new ServiceResponse<WishlistDTO>();
 
             WishlistItem? item = await _context.WishlistItems
-                .Where(wishlist => wishlist.id == id).FirstOrDefaultAsync();
+                .Where(wishlist => wishlist.Id == id).FirstOrDefaultAsync();
 
             WishlistDTO? wishlistDTO = _mapper.Map<WishlistDTO>(item);
 

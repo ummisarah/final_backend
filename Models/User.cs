@@ -15,6 +15,7 @@ namespace final_project.Models
         public string Address {get; set;} = string.Empty;
         public byte[] PasswordHash {get; set;}
         public byte[] PasswordSalt {get; set;}
+        public string? ImageURL {get; set;}
         public Cart? cart {get; set;}
         public Wishlist? wishlist {get; set;}
     }

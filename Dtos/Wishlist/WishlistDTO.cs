@@ -8,8 +8,8 @@ namespace final_project.Dtos.Wishlist
     public class WishlistDTO
     {
         
-        public int id { get; set; }
+        public int Id { get; set; }
         
-        public int productId { get; set; }
+        public int ProductId { get; set; }
     }
 }

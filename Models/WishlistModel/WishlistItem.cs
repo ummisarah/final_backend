@@ -7,10 +7,10 @@ namespace final_project.Models.WishlistModel
 {
     public class WishlistItem
     {
-        public int id { get; set; }
+        public int Id { get; set; }
 
-        public Product? product { get; set; }
+        public Product? Product { get; set; }
         
-        public int productId { get; set; }
+        public int ProductId { get; set; }
     }
 }

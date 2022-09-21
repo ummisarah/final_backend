@@ -7,19 +7,19 @@ namespace final_project.Models
 {
     public class Product
     {
-        public int id { get; set; }
+        public int Id { get; set; }
 
-        public string product_name { get; set; } = string.Empty;
+        public string ProductName { get; set; } = string.Empty;
 
-        public string description { get; set; } = string.Empty;
+        public string Description { get; set; } = string.Empty;
 
-        public int price { get; set; }
+        public int Price { get; set; }
 
-        public int stock { get; set; }
+        public int Stock { get; set; }
 
-        public Category? category { get; set; }
+        public Category? Category { get; set; }
 
-        public string image_url { get; set; } = string.Empty;
+        public string ImageURL { get; set; } = string.Empty;
 
     }
 }

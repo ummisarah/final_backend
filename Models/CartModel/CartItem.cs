@@ -7,14 +7,14 @@ namespace final_project.Models.CartModel
 {
     public class CartItem
     {
-        public int id { get; set; }
-        public Product? product { get; set; }
+        public int Id { get; set; }
+        public Product? Product { get; set; }
         
-        public int productId { get; set; }
+        public int ProductId { get; set; }
 
-        public int quantity { get; set; } = 1;
+        public int Quantity { get; set; } = 1;
 
-        public string? notes { get; set; }
-        public Cart? cart {get; set;}
+        public string? Notes { get; set; }
+        public Cart? Cart {get; set;}
     }
 }

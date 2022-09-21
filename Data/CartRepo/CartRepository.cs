@@ -33,8 +33,8 @@ namespace final_project.Data.CartRepo
             var response = new ServiceResponse<Cart>();
 
             var result = await _context.Carts
-                .Include(item => item.user)
-                .Where(item => item.id == GetUserId())
+                .Include(item => item.User)
+                .Where(item => item.Id == GetUserId())
                 .FirstOrDefaultAsync();
 
             response.Data = result;
@@ -59,10 +59,10 @@ namespace final_project.Data.CartRepo
 
             CartItem cartItem = _mapper.Map<CartItem>(addToCartDTO);
             Cart? cartUser = await _context.Carts
-                .Where(u => u.id == addToCartDTO.cartId)
+                .Where(u => u.Id == addToCartDTO.CartId)
                 .FirstOrDefaultAsync();
 
-            cartItem.cart = cartUser;
+            cartItem.Cart = cartUser;
             _context.CartItems.Add(cartItem);
 
             await _context.SaveChangesAsync();
@@ -77,13 +77,13 @@ namespace final_project.Data.CartRepo
             var response = new ServiceResponse<CartItem> ();
             
             CartItem? item = await _context.CartItems
-                .Where(cart => cart.id == cartItemDTO.id).FirstOrDefaultAsync();
-            if (cartItemDTO.quantity == 0)
+                .Where(cart => cart.Id == cartItemDTO.Id).FirstOrDefaultAsync();
+            if (cartItemDTO.Quantity == 0)
                 {
                     _context.Remove(item);
                 }
-            item.quantity = cartItemDTO.quantity;
-            item.notes = cartItemDTO.notes;
+            item.Quantity = cartItemDTO.Quantity;
+            item.Notes = cartItemDTO.Notes;
             await _context.SaveChangesAsync();
             response.Data = item;
             return response;
@@ -94,7 +94,7 @@ namespace final_project.Data.CartRepo
             var response = new ServiceResponse<CartItemDTO>();
 
             CartItem? item = await _context.CartItems
-                .Where(cart => cart.id == id).FirstOrDefaultAsync();
+                .Where(cart => cart.Id == id).FirstOrDefaultAsync();
             
             if(item != null)
             {
