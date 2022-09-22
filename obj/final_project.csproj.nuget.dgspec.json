@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\bsi80132\\learn_dotnet\\final_project\\final_project.csproj": {}
+    "C:\\Users\\bsi80138\\Project\\dotnet\\final_project\\final_project.csproj": {}
   },
   "projects": {
-    "C:\\Users\\bsi80132\\learn_dotnet\\final_project\\final_project.csproj": {
+    "C:\\Users\\bsi80138\\Project\\dotnet\\final_project\\final_project.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\bsi80132\\learn_dotnet\\final_project\\final_project.csproj",
+        "projectUniqueName": "C:\\Users\\bsi80138\\Project\\dotnet\\final_project\\final_project.csproj",
         "projectName": "final_project",
-        "projectPath": "C:\\Users\\bsi80132\\learn_dotnet\\final_project\\final_project.csproj",
-        "packagesPath": "C:\\Users\\bsi80132\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\bsi80132\\learn_dotnet\\final_project\\obj\\",
+        "projectPath": "C:\\Users\\bsi80138\\Project\\dotnet\\final_project\\final_project.csproj",
+        "packagesPath": "C:\\Users\\bsi80138\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\bsi80138\\Project\\dotnet\\final_project\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\bsi80132\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\bsi80138\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

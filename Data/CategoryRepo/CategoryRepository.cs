@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using final_project.Dtos.Category;
 using final_project.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace final_project.Data.CategoryRepo
 {
@@ -21,7 +22,7 @@ namespace final_project.Data.CategoryRepo
         {
             var response = new ServiceResponse<List<CategoryDTO>>();
 
-            List<Category> category = await _context.Categories.ToListASync();
+            List<Category> category = await _context.Categories.ToListAsync();
 
             List<CategoryDTO> categoryDTO = _mapper.Map<List<CategoryDTO>>(category);
 
