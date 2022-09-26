@@ -58,6 +58,8 @@ var app = builder.Build();
 
 // app.UseHttpsRedirection();
 
+app.UseSwagger();
+app.UseSwaggerUI();
 app.UseAuthentication();
 app.UseAuthorization();
 
