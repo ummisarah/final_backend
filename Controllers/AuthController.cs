@@ -29,6 +29,7 @@ namespace final_project.Controllers
             var response = await _authRepo.Register(register);
             if(!response.Success)
             {
+                response.Message = "User Already Used!";
                 return BadRequest(response);
             }
             return Ok(response);
@@ -36,7 +37,7 @@ namespace final_project.Controllers
         }
         [AllowAnonymous]
         [HttpPost("Login")]
-        public async Task<ActionResult<ServiceResponse<string>>> Login(UserLoginDTO login)
+        public async Task<ActionResult<ServiceResponse<UserDTO>>> Login(UserLoginDTO login)
         {
             var response = await _authRepo.Login(login);
             if(!response.Success)

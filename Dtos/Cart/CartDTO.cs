@@ -5,14 +5,10 @@ using System.Threading.Tasks;
 
 namespace final_project.Dtos.Cart
 {
-    public class  AddToCartDTO
+    public class CartDTO
     {
         public int Id { get; set; }
-        
-        public int ProductId { get; set; }
 
-        public int Quantity { get; set; } = 1;
-
-        public string? Notes { get; set; }
+        public List<CartItemDTO>? CartItems { get; set; }
     }
 }

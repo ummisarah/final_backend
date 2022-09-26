@@ -13,5 +13,6 @@ namespace final_project.Dtos.User
         public string PhoneNumber {get; set;} = string.Empty;
         public string Address {get; set;} = string.Empty;
         public string Password {get; set;} = "12345678";
+        public string? ImageURL {get; set;}
     }
 }

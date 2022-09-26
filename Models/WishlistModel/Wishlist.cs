@@ -8,12 +8,12 @@ namespace final_project.Models
 {
     public class Wishlist
     {
-        public int id { get; set; }
+        public int Id { get; set; }
         
-        public User? user_wishlist {get; set;}
+        public User? UserWishlist {get; set;}
 
-        public int userId { get; set; }
+        public int UserId { get; set; }
         
-        public List<WishlistItem>? wishlistItems { get; set; }
+        public List<WishlistItem>? WishlistItems { get; set; }
     }
 }

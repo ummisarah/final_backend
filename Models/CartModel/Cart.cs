@@ -10,7 +10,7 @@ namespace final_project.Models
     {
          public int Id { get; set; }
 
-        public User? User { get; set; }
+        public User? UserCart { get; set; }
         
         public int UserId {get; set;}
 

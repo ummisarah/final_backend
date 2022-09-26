@@ -34,36 +34,50 @@ namespace final_project.Data.WishlistRepo
                 ProductId = productId
             };
             
+            Wishlist? wishlist = await _context.Wishlists
+                .Where(u => u.Id == GetUserId())
+                .FirstOrDefaultAsync();
+            
+            wishlistItem.Wishlist = wishlist;
 
             WishlistDTO? wishlistItemDTO = _mapper.Map<WishlistDTO>(wishlistItem);            
 
             _context.WishlistItems.Add(wishlistItem);
 
-            var wishlistUser = await _context.Wishlists
-                .Include(item => item.user_wishlist)
-                .Include(item => item.wishlistItems)
-                .Where(wishlist => wishlist.id == GetUserId())
-                .FirstOrDefaultAsync();
+            // var wishlistUser = await _context.Wishlists
+            //     .Include(item => item.UserWishlist)
+            //     .Include(item => item.WishlistItems)
+            //     .Where(wishlist => wishlist.Id == GetUserId())
+            //     .FirstOrDefaultAsync();
 
-            wishlistUser.wishlistItems.Add(wishlistItem);
+            // wishlistUser.WishlistItems.Add(wishlistItem);
 
             await _context.SaveChangesAsync();
 
             response.Data = wishlistItemDTO;
+            response.Message = "Data Added!";
 
             return response;
         }
             
-        public async Task<ServiceResponse<Wishlist>> GetWishlist()
+        public async Task<ServiceResponse<WishlistDTO>> GetWishlist()
         {
-            var response = new ServiceResponse<Wishlist>();
+            var response = new ServiceResponse<WishlistDTO>();
 
             var result = await _context.Wishlists
-                .Include(item => item.user_wishlist)
-                .Where(item => item.id ==  GetUserId())
+                .Include(item => item.UserWishlist)
+                .Where(item => item.Id ==  GetUserId())
                 .FirstOrDefaultAsync();
 
-            response.Data = result;
+            var WishlistItem = await _context.WishlistItems
+                .Include(item => item.Product)
+                .Include(item => item.Wishlist)
+                .Where(item => item.Wishlist == result)
+                .ToListAsync();
+
+            WishlistDTO wishlistDTO = _mapper.Map<WishlistDTO>(result);
+
+            response.Data = wishlistDTO;
             response.Message = "Data Retrieved";
 
             return response;
@@ -80,8 +94,10 @@ namespace final_project.Data.WishlistRepo
 
             _context.WishlistItems.Remove(item);
             await _context.SaveChangesAsync();
-            response.Data = wishlistDTO;
             
+            response.Data = wishlistDTO;
+            response.Message = "Data Removed!";
+
             return response;
         }
     }

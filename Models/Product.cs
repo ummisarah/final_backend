@@ -17,7 +17,7 @@ namespace final_project.Models
 
         public int Stock { get; set; }
 
-        public Category? Category { get; set; }
+        public Category Category { get; set; }
 
         public string ImageURL { get; set; } = string.Empty;
 

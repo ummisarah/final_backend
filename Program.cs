@@ -1,5 +1,6 @@
 using final_project.Data;
 using final_project.Data.CartRepo;
+using final_project.Data.CategoryRepo;
 using final_project.Data.ProductRepo;
 using final_project.Data.WishlistRepo;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -51,11 +52,11 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    // app.UseSwagger();
+    // app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
+// app.UseHttpsRedirection();
 
 app.UseAuthentication();
 app.UseAuthorization();

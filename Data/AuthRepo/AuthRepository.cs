@@ -25,9 +25,9 @@ namespace final_project.Data
             _httpContextAccessor = httpContextAccessor;
             _mapper = mapper;
         }
-        public async Task<ServiceResponse<string>> Login(UserLoginDTO login)
+        public async Task<ServiceResponse<UserDTO>> Login(UserLoginDTO login)
         {
-            var response = new ServiceResponse<string>();
+            var response = new ServiceResponse<UserDTO>();
             var user = await _context.Users
                 .FirstOrDefaultAsync(u => u.Username.ToLower().Equals(login.Username.ToLower()));
 
@@ -55,7 +55,7 @@ namespace final_project.Data
                 _context.Tokens.Add(token);
                 await _context.SaveChangesAsync();
 
-                response.Data = CreateToken(user);
+                response.Data = userDTO;
             }
             return response;
         }
@@ -87,7 +87,7 @@ namespace final_project.Data
             (
                 new Cart
                 {
-                    User = userCart
+                    UserCart = userCart
                 }
             );
 
@@ -95,7 +95,7 @@ namespace final_project.Data
             (
                 new Wishlist
                 {
-                    user_wishlist = userCart
+                    UserWishlist = userCart
                 }
             );
 
@@ -165,11 +165,9 @@ namespace final_project.Data
             .FindFirstValue(ClaimTypes.NameIdentifier));
         public async Task<ServiceResponse<UserDTO>> GetUser()
         {
-
+            
             var response = new ServiceResponse<UserDTO>();
-            // Console.WriteLine("123*******************");
-            var test = GetUserId();
-            Console.WriteLine(test);
+
             User? result = await _context.Users
                 .FirstOrDefaultAsync(item => item.Id == GetUserId());
             // Console.WriteLine("*******************");

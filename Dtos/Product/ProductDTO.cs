@@ -20,8 +20,8 @@ namespace final_project.Dtos.Product
 
         public int Stock { get; set; }
 
-        public string ImageURL { get; set; } = string.Empty;
-
         public CategoryDTO Category { get; set; }
+        
+        public string ImageURL { get; set; } = string.Empty;
     }
 }
