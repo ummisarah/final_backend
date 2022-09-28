@@ -10,7 +10,7 @@ namespace final_project.Data.WishlistRepo
 {
     public interface IWishlistRepository
     {
-        Task<ServiceResponse<WishlistDTO>> AddWishlist(int ProductId);
+        Task<ServiceResponse<WishlistItemDTO>> AddWishlist(WishlistItemDTO addWishlistDTO);
         Task<ServiceResponse<WishlistDTO>> GetWishlist();
         Task<ServiceResponse<WishlistDTO>> DeleteWishlist(int id);
     }

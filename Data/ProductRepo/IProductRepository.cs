@@ -11,6 +11,6 @@ namespace final_project.Data.ProductRepo
     {
         // Task<ServiceResponse<int>> PostProduct(string product_name, string description, int price, int stock, string categories, string image_url);
         Task<ServiceResponse<List<ProductDTO>>> GetAllItem();
-        Task<ServiceResponse<Product>> GetItembyId(int id);
+        Task<ServiceResponse<ProductDTO>> GetItembyId(int id);
     }
 }

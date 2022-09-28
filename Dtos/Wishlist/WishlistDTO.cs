@@ -9,8 +9,6 @@ namespace final_project.Dtos.Wishlist
     {
         
         public int Id { get; set; }
-        
-        public int ProductId { get; set; }
 
         public List<WishlistItemDTO>? WishlistItems { get; set; }
     }

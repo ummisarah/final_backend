@@ -71,23 +71,43 @@ namespace final_project.Data.CartRepo
         {
             var response = new ServiceResponse<AddToCartDTO>();
 
-            CartItem cartItem = _mapper.Map<CartItem>(addToCartDTO);
-
             Cart? cartUser = await _context.Carts
                 .Where(u => u.Id == GetUserId())
                 .FirstOrDefaultAsync();
 
-            // cartUser.CartItems.Add
+            CartItem? cartItemUser = await _context.CartItems
+                .Where(cartitem => cartitem.Cart == cartUser && cartitem.ProductId == addToCartDTO.ProductId)
+                .FirstOrDefaultAsync();
 
-            cartItem.Cart = cartUser;
+            if(cartItemUser == null)
+            {
+                CartItem cartItem = _mapper.Map<CartItem>(addToCartDTO);
+                // cartUser.CartItems.Add
+                cartItem.Cart = cartUser;
+                // if()
+                _context.CartItems.Add(cartItem);
 
-            _context.CartItems.Add(cartItem);
+                await _context.SaveChangesAsync();
 
-            await _context.SaveChangesAsync();
+                CartItem? item = await _context.CartItems
+                    .Where(cartitem => cartitem.Cart == cartUser && cartitem.ProductId == addToCartDTO.ProductId)
+                    .FirstOrDefaultAsync();
 
-            response.Data = addToCartDTO;
+                addToCartDTO.Id = item.Id;
+
+                response.Data = addToCartDTO;
+                response.Message = "Item Added to Cart!";
+                //response.Data = item.Select(item => _mapper.Map<AddToCartDTO>(item)).Tolist();
+
+                return response;
+            }
+
+            cartItemUser.Quantity++;
+            
+            AddToCartDTO addToCart = _mapper.Map<AddToCartDTO>(cartItemUser);
+            
+            response.Data = addToCart;
             response.Message = "Item Added to Cart!";
-            //response.Data = item.Select(item => _mapper.Map<AddToCartDTO>(item)).Tolist();
 
             return response;
         }

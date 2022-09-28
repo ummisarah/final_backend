@@ -26,9 +26,9 @@ namespace final_project.Controllers
 
         
         [HttpPost("AddToWishlist")]
-        public async Task<ActionResult<ServiceResponse<WishlistDTO>>> AddWishlist(int productId)
+        public async Task<ActionResult<ServiceResponse<WishlistDTO>>> AddWishlist(WishlistItemDTO addWishlistDTO)
         {
-            var response = await _wishlistRepository.AddWishlist(productId);
+            var response = await _wishlistRepository.AddWishlist(addWishlistDTO);
             return Ok(response);
         }
 

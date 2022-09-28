@@ -34,8 +34,8 @@ namespace final_project.Controllers
             return Ok(response);
         }
 
-        [HttpGet("GetProductItemId")]
-        public async Task<ActionResult<ServiceResponse<List<ProductDTO>>>> GetItembyId(int id)
+        [HttpGet("GetProductItemId/{id}")]
+        public async Task<ActionResult<ServiceResponse<ProductDTO>>> GetItembyId(int id)
         {
             var response = await _productRepo.GetItembyId(id);
             

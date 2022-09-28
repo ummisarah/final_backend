@@ -24,8 +24,9 @@ namespace final_project
             CreateMap<Product, ProductDTO>();
             CreateMap<AddToCartDTO, CartItem>();
             CreateMap<CartItem, CartItemDTO>();
-            CreateMap<WishlistItem, WishlistItemDTO>();
             CreateMap<Wishlist, WishlistDTO>();
+            CreateMap<WishlistItem, WishlistItemDTO>();
+            CreateMap<WishlistItemDTO, WishlistItem>();
             CreateMap<Category, CategoryDTO>();
             CreateMap<Cart, CartDTO>();
         }

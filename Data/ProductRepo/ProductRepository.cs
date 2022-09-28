@@ -34,16 +34,18 @@ namespace final_project.Data.ProductRepo
             return response;
         }
 
-        public async Task<ServiceResponse<Product>> GetItembyId(int id)
+        public async Task<ServiceResponse<ProductDTO>> GetItembyId(int id)
         {
-            var response = new ServiceResponse<Product> ();
+            var response = new ServiceResponse<ProductDTO> ();
 
             var item = await _context.Products
                 .Include(item => item.Category)
                 .Where(item => item.Id == id)
                 .FirstOrDefaultAsync();
+            
+            ProductDTO productDTO = _mapper.Map<ProductDTO>(item);
 
-            response.Data = item;
+            response.Data = productDTO;
             response.Message = "Data Retrieved";
 
             return response;

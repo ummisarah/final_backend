@@ -25,37 +25,62 @@ namespace final_project.Data.WishlistRepo
         private int GetUserId() => int.Parse(_httpContextAccessor.HttpContext!.User
             .FindFirstValue(ClaimTypes.NameIdentifier));
 
-        public async Task<ServiceResponse<WishlistDTO>> AddWishlist(int productId)
+        public async Task<ServiceResponse<WishlistItemDTO>> AddWishlist(WishlistItemDTO addWishlistItemDTO)
         {
-            var response = new ServiceResponse<WishlistDTO>();
-
-            WishlistItem wishlistItem = new WishlistItem 
-            {
-                ProductId = productId
-            };
+            var response = new ServiceResponse<WishlistItemDTO>();
             
             Wishlist? wishlist = await _context.Wishlists
                 .Where(u => u.Id == GetUserId())
                 .FirstOrDefaultAsync();
             
-            wishlistItem.Wishlist = wishlist;
+            WishlistItem wishlistItem = await _context.WishlistItems
+                .Where(wishlistItem => wishlistItem.Wishlist == wishlist && wishlistItem.ProductId == addWishlistItemDTO.ProductId)
+                .FirstOrDefaultAsync();
 
-            WishlistDTO? wishlistItemDTO = _mapper.Map<WishlistDTO>(wishlistItem);            
+            if(wishlistItem == null)
+            {
+                // Product product = await _context.Products
+                //     .Where(product => product.Id == Product_Id)
+                //     .FirstOrDefaultAsync();
 
-            _context.WishlistItems.Add(wishlistItem);
+                // WishlistItem addWishlistItem = new WishlistItem 
+                // {
+                //     ProductId = ProductId,
+                //     Wishlist = wishlist
+                // };
 
-            // var wishlistUser = await _context.Wishlists
-            //     .Include(item => item.UserWishlist)
-            //     .Include(item => item.WishlistItems)
-            //     .Where(wishlist => wishlist.Id == GetUserId())
-            //     .FirstOrDefaultAsync();
+                WishlistItem newWishlistItem = _mapper.Map<WishlistItem>(addWishlistItemDTO);
 
-            // wishlistUser.WishlistItems.Add(wishlistItem);
+                newWishlistItem.Wishlist = wishlist;
+                
+                _context.WishlistItems.Add(newWishlistItem);
+                
+                // var wishlistUser = await _context.Wishlists
+                //     .Include(item => item.UserWishlist)
+                //     .Include(item => item.WishlistItems)
+                //     .Where(wishlist => wishlist.Id == GetUserId())
+                //     .FirstOrDefaultAsync();
 
-            await _context.SaveChangesAsync();
+                // wishlistUser.WishlistItems.Add(wishlistItem);
 
-            response.Data = wishlistItemDTO;
-            response.Message = "Data Added!";
+                await _context.SaveChangesAsync();
+
+                WishlistItem? wishlistItem1 = await _context.WishlistItems
+                    .Include(p => p.Product)
+                    .Where(w => w.Wishlist == wishlist && w.ProductId == addWishlistItemDTO.ProductId)
+                    .FirstOrDefaultAsync();
+                
+                // WishlistItemDTO? wishlistItemDTO = _mapper.Map<WishlistItemDTO>(wishlistItem1); 
+                addWishlistItemDTO.Id = wishlistItem1.Id;
+                // wishlistItemDTO.Id = wishlistItem1.Id;
+
+                response.Data = addWishlistItemDTO;
+                response.Message = "Data Added!";
+
+                return response;
+            }
+
+            response.Message = "Product Already On Wishlist!";
 
             return response;
         }
