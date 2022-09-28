@@ -21,16 +21,6 @@ namespace final_project.Data.ProductRepo
             _context = context;
         }
 
-        public Task<ServiceResponse<Product>> DeleteCartItem()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<ServiceResponse<Product>> EditCart(int quantity)
-        {
-            throw new NotImplementedException();
-        }
-
         public async Task<ServiceResponse<List<ProductDTO>>> GetAllItem()
         {
             var response = new ServiceResponse<List<ProductDTO>>();

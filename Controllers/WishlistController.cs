@@ -13,7 +13,8 @@ namespace final_project.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    // [Authorize]
+    [Authorize]
+    
     public class WishlistController : ControllerBase
     {
         private readonly IWishlistRepository _wishlistRepository;
