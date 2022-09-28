@@ -23,10 +23,11 @@ namespace final_project.Data.CategoryRepo
             var response = new ServiceResponse<List<CategoryDTO>>();
 
             List<Category> category = await _context.Categories.ToListAsync();
+            Console.WriteLine(category);
 
-            List<CategoryDTO> categoryDTO = _mapper.Map<List<CategoryDTO>>(category);
+            // List<CategoryDTO> categoryDTO = _mapper.Map<List<CategoryDTO>>(category);
 
-            response.Data = categoryDTO;
+            response.Data = category.Select(c => _mapper.Map<CategoryDTO>(c)).ToList();
 
             return response;
         }
