@@ -39,7 +39,7 @@ namespace final_project.Controllers
             return Ok(response);
         }
 
-        [HttpDelete("DeleteWishlistItem/{id}")]
+        [HttpDelete("DeleteWishlistItem")]
         public async Task<ActionResult<ServiceResponse<WishlistItemDTO>>> DeleteWishlist(int id)
         {
             var response = await _wishlistRepository.DeleteWishlist(id);
