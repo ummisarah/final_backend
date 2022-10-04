@@ -12,6 +12,6 @@ namespace final_project.Data.WishlistRepo
     {
         Task<ServiceResponse<WishlistItemDTO>> AddWishlist(WishlistItemDTO addWishlistDTO);
         Task<ServiceResponse<WishlistDTO>> GetWishlist();
-        Task<ServiceResponse<WishlistDTO>> DeleteWishlist(int id);
+        Task<ServiceResponse<WishlistItemDTO>> DeleteWishlist(int id);
     }
 }

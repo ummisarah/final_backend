@@ -108,17 +108,21 @@ namespace final_project.Data.WishlistRepo
             return response;
         }
 
-        public async Task<ServiceResponse<WishlistDTO>> DeleteWishlist(int id)
+        public async Task<ServiceResponse<WishlistItemDTO>> DeleteWishlist(int id)
         {
-            var response = new ServiceResponse<WishlistDTO>();
+            var response = new ServiceResponse<WishlistItemDTO>();
+
+
 
             WishlistItem? item = await _context.WishlistItems
                 .Where(wishlist => wishlist.Id == id).FirstOrDefaultAsync();
 
-            WishlistDTO? wishlistDTO = _mapper.Map<WishlistDTO>(item);
+            WishlistItemDTO? wishlistDTO = _mapper.Map<WishlistItemDTO>(item);
 
             _context.WishlistItems.Remove(item);
             await _context.SaveChangesAsync();
+
+
             
             response.Data = wishlistDTO;
             response.Message = "Data Removed!";
