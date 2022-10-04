@@ -102,12 +102,16 @@ namespace final_project.Data.CartRepo
                 return response;
             }
 
+            // int qty = cartItemUser.Quantity + 1;
+            // cartItemUser.Quantity = qty;
             cartItemUser.Quantity++;
-            
+
+            await _context.SaveChangesAsync();
+
             AddToCartDTO addToCart = _mapper.Map<AddToCartDTO>(cartItemUser);
             
             response.Data = addToCart;
-            response.Message = "Item Added to Cart!";
+            response.Message = "Item Quantity Added!";
 
             return response;
         }
@@ -142,6 +146,7 @@ namespace final_project.Data.CartRepo
                 _context.CartItems.Remove(item);
                 await _context.SaveChangesAsync();
                 response.Data = cartItem;
+                response.Message = "Item Deleted!";
                 return response;
             }
 
