@@ -21,16 +21,21 @@ namespace final_project
         {
             CreateMap<User, UserDTO>();
             CreateMap<UserRegisterDTO, User>();
+
             CreateMap<Product, ProductDTO>();
-            CreateMap<AddToCartDTO, CartItem>();
-            CreateMap<CartItem, CartItemDTO>();
+            CreateMap<Product, ProductCartDTO>();
+
             CreateMap<Wishlist, WishlistDTO>();
             CreateMap<WishlistItem, WishlistItemDTO>();
             CreateMap<WishlistItemDTO, WishlistItem>();
+
             CreateMap<Category, CategoryDTO>();
+            
             CreateMap<Cart, CartDTO>();
             CreateMap<CartItem, AddToCartDTO>();
-            CreateMap<Product, ProductCartDTO>();
+            CreateMap<AddToCartDTO, CartItem>();
+            CreateMap<CartItem, CartItemDTO>();
+            CreateMap<Cart, CartProductDTO>();
         }
     }
 }

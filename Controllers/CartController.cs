@@ -33,7 +33,7 @@ namespace final_project.Controllers
 
         // [AllowAnonymous]
         [HttpGet("GetCart")]
-        public async Task<ActionResult<ServiceResponse<CartDTO>>> GetAllCart()
+        public async Task<ActionResult<ServiceResponse<CartProductDTO>>> GetAllCart()
         {
             var response = await _cartRepository.GetAllCart();
             return Ok(response);

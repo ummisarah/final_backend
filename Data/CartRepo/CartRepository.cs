@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using final_project.Dtos;
 using final_project.Dtos.Cart;
+using final_project.Dtos.Product;
 using final_project.Models;
 using final_project.Models.CartModel;
 using Microsoft.EntityFrameworkCore;
@@ -28,20 +29,9 @@ namespace final_project.Data.CartRepo
         private int GetUserId() => int.Parse(_httpContextAccessor.HttpContext!.User
             .FindFirstValue(ClaimTypes.NameIdentifier));
 
-        public async Task<ServiceResponse<CartDTO>> GetAllCart()
+        public async Task<ServiceResponse<CartProductDTO>> GetAllCart()
         {
-            var response = new ServiceResponse<CartDTO>();
-
-            // var cart = await _context.Carts
-            //     .Include(item => item.UserCart)
-            //     .Where(u => u.Id == GetUserId())
-            //     .FirstOrDefaultAsync();
-
-            // var result = await _context.CartItems
-            //     .Include(item => item.Product)
-            //     .Include(item => item.Cart)
-            //     .Where(item => item.Cart == cart)
-            //     .ToListAsync();
+            var response = new ServiceResponse<CartProductDTO>();
 
             var cart = await _context.Carts
                 .Include(item => item.UserCart)
@@ -53,13 +43,29 @@ namespace final_project.Data.CartRepo
                 .Include(item => item.Cart)
                 .Where(item => item.Cart == cart)
                 .ToListAsync();
-
-            // List<CartItemDTO> cartItemDTO = _mapper.Map<List<CartItemDTO>>(result);
             
-            CartDTO cartDTO = _mapper.Map<CartDTO>(cart);
+            List<ProductCartDTO> productCartDTO = new List<ProductCartDTO>();
 
-            // Console.WriteLine(cartItem);
-            
+            var cartx = cartItem.ToArray();
+
+            foreach(var x in cartItem)
+            {
+                var product = await _context.Products.Where(item => item.Id == x.ProductId).FirstOrDefaultAsync();
+                ProductCartDTO productCart = new ProductCartDTO
+                {
+                    Id = x.Id,
+                    ProductId = x.ProductId,
+                    Quantity = x.Quantity,
+                    Price = product.Price
+                };
+                productCartDTO.Add(productCart);
+            }
+
+            CartProductDTO cartDTO = new CartProductDTO
+            {
+                Id = GetUserId(),
+                CartItemList = productCartDTO
+            };
 
             response.Data = cartDTO;
             response.Message = "Data Retrieved";

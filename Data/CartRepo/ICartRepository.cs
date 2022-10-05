@@ -12,7 +12,7 @@ namespace final_project.Data.CartRepo
     public interface ICartRepository
     {
         Task<ServiceResponse<AddToCartDTO>> AddCart(AddToCartDTO addToCartDTO);
-        Task<ServiceResponse<CartDTO>> GetAllCart();
+        Task<ServiceResponse<CartProductDTO>> GetAllCart();
         Task<ServiceResponse<CartItem>> EditCart(CartItemDTO cartItemDTO);
         Task<ServiceResponse<CartItemDTO>> DeleteCart(int id);
     }
