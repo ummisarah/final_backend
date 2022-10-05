@@ -42,6 +42,18 @@ namespace final_project.Controllers
             return Ok(response);
         }
 
+        [HttpGet("SearchProduct")]
+        public async Task<ActionResult<ServiceResponse<ProductDTO>>> FindProduct(String product)
+        {
+            var response = await _productRepo.FindProduct(product);
+
+            if(response.Success)
+            {
+                return Ok(response);
+            }
+            return BadRequest(response);
+        }
+
         
     }
 }

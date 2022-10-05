@@ -21,6 +21,27 @@ namespace final_project.Data.ProductRepo
             _context = context;
         }
 
+        public async Task<ServiceResponse<List<ProductDTO>>> FindProduct(string product)
+        {
+            var response = new ServiceResponse<List<ProductDTO>>();
+
+            List<Product> products = await _context.Products.Where(item => item.ProductName.ToLower().Contains(product.ToLower())).ToListAsync();
+            
+            if(products != null)
+            {
+                List<ProductDTO> listProduct = _mapper.Map<List<ProductDTO>>(products);
+
+                response.Data = listProduct;
+                response.Message = "Searched Item!";
+                return response;
+            }
+            
+            response.Success = false;
+            response.Message = "Item Not Found!";
+            return response;
+
+        }
+
         public async Task<ServiceResponse<List<ProductDTO>>> GetAllItem()
         {
             var response = new ServiceResponse<List<ProductDTO>>();
