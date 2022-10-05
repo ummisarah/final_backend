@@ -33,7 +33,7 @@ namespace final_project.Data.WishlistRepo
                 .Where(u => u.Id == GetUserId())
                 .FirstOrDefaultAsync();
             
-            WishlistItem wishlistItem = await _context.WishlistItems
+            WishlistItem? wishlistItem = await _context.WishlistItems
                 .Where(wishlistItem => wishlistItem.Wishlist == wishlist && wishlistItem.ProductId == addWishlistItemDTO.ProductId)
                 .FirstOrDefaultAsync();
 
@@ -103,7 +103,7 @@ namespace final_project.Data.WishlistRepo
             WishlistDTO wishlistDTO = _mapper.Map<WishlistDTO>(result);
 
             response.Data = wishlistDTO;
-            response.Message = "Data Retrieved";
+            response.Message = "Data Wishlist Retrieved";
 
             return response;
         }
@@ -125,7 +125,7 @@ namespace final_project.Data.WishlistRepo
 
             
             response.Data = wishlistDTO;
-            response.Message = "Data Removed!";
+            response.Message = "Wishlist Item Removed!";
 
             return response;
         }

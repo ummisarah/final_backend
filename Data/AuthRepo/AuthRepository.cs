@@ -56,6 +56,7 @@ namespace final_project.Data
                 await _context.SaveChangesAsync();
 
                 response.Data = userDTO;
+                response.Message = "Login Success!";
             }
             return response;
         }
@@ -79,7 +80,7 @@ namespace final_project.Data
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
 
-            User userCart = await _context.Users
+            User? userCart = await _context.Users
                 .FirstOrDefaultAsync(u => u.Username == register.Username);
             // Console.WriteLine(userCart.Id);
            
@@ -102,6 +103,7 @@ namespace final_project.Data
              await _context.SaveChangesAsync();
 
             response.Data = user.Id;
+            response.Message = "User Successfully Registered!";
             return response;
         }
 
@@ -173,6 +175,7 @@ namespace final_project.Data
             // Console.WriteLine("*******************");
             UserDTO userDTO = _mapper.Map<UserDTO>(result);
             response.Data = userDTO;
+            response.Message = "Profile Retrieved!";
             return response;
         }
     }

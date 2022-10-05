@@ -28,6 +28,7 @@ namespace final_project.Data.CategoryRepo
             // List<CategoryDTO> categoryDTO = _mapper.Map<List<CategoryDTO>>(category);
 
             response.Data = category.Select(c => _mapper.Map<CategoryDTO>(c)).ToList();
+            response.Message = "Category Retrieved!";
 
             return response;
         }

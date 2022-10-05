@@ -130,6 +130,7 @@ namespace final_project.Data.CartRepo
             item.Notes = cartItemDTO.Notes;
             await _context.SaveChangesAsync();
             response.Data = item;
+            response.Message = "Item Quantity Added!";
             return response;
         }
 
