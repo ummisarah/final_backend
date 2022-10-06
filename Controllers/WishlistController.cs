@@ -23,7 +23,6 @@ namespace final_project.Controllers
             _wishlistRepository = wishlistRepository;
             
         }
-
         
         [HttpPost("AddToWishlist")]
         public async Task<ActionResult<ServiceResponse<WishlistDTO>>> AddWishlist(WishlistItemDTO addWishlistDTO)

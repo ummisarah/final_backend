@@ -102,7 +102,7 @@ namespace final_project.Data.CartRepo
                 addToCartDTO.Id = item.Id;
 
                 response.Data = addToCartDTO;
-                response.Message = "Item Added to Cart!";
+                response.Message = "Item Added To Cart!";
                 //response.Data = item.Select(item => _mapper.Map<AddToCartDTO>(item)).Tolist();
 
                 return response;
@@ -158,7 +158,7 @@ namespace final_project.Data.CartRepo
             }
 
             response.Success = false;
-            response.Message = "ID not found";
+            response.Message = "ID Not found";
             return response;
         }
 
@@ -194,7 +194,7 @@ namespace final_project.Data.CartRepo
             }
             
             response.Data = 0;
-            response.Message = "Cart is empty!";
+            response.Message = "Cart Is empty!";
             return response;
 
         }

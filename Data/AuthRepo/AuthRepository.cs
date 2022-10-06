@@ -34,7 +34,7 @@ namespace final_project.Data
             if(user == null)
             {
                 response.Success = false;
-                response.Message = "User not found!";
+                response.Message = "User Not found!";
             }
             else if(!VerifyPasswordHash(login.Password, user.PasswordHash, user.PasswordSalt))
             {
@@ -66,7 +66,7 @@ namespace final_project.Data
             if (await UserExists(register.Username))
             {
                 response.Success = false;
-                response.Message = "User already exists!";
+                response.Message = "User Already Exists!";
                 return response;
             }
             

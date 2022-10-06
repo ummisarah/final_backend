@@ -39,7 +39,6 @@ namespace final_project.Controllers
             return Ok(response);
         }
 
-        [AllowAnonymous]
         [HttpPost("EditCartItem")]
         public async Task<ActionResult<ServiceResponse<CartItem>>> EditCart(CartItemDTO cartItemDTO)
         {
@@ -47,7 +46,6 @@ namespace final_project.Controllers
             return Ok(response);
         }
 
-        [AllowAnonymous]
         [HttpDelete("DeleteCartItem")]
         public async Task<ActionResult<ServiceResponse<CartItemDTO>>> DeleteCart(int id)
         {
