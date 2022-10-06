@@ -54,5 +54,12 @@ namespace final_project.Controllers
             var response = await _cartRepository.DeleteCart(id);
             return Ok(response);
         }
+
+        [HttpGet("GrandTotal")]
+        public async Task<ActionResult<ServiceResponse<int>>> GrandTotal()
+        {
+            var response = await _cartRepository.GrandTotal();
+            return Ok(response);
+        }
     }
 }

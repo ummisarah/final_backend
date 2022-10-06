@@ -161,5 +161,42 @@ namespace final_project.Data.CartRepo
             response.Message = "ID not found";
             return response;
         }
+
+        public async Task<ServiceResponse<int>> GrandTotal()
+        {
+            var response = new ServiceResponse<int>();
+
+            Cart? cart = await _context.Carts
+                .Include(p => p.CartItems)
+                .Where(u => u.Id == GetUserId())
+                .FirstOrDefaultAsync();
+
+            var  totalList = new List<int>();
+
+            if(cart.CartItems.Count() != 0)
+            {
+                // List<CartItem> cartItem = await _context.CartItems
+                //     .Where(i => i.Cart == cart)
+                //     .ToListAsync();
+
+                foreach(var i in cart.CartItems)
+                {
+                    Product product = await _context.Products.Where(x => x.Id == i.ProductId).FirstOrDefaultAsync();
+                    int total = i.Quantity * product.Price;
+                    totalList.Add(total);
+                }
+                
+                int grandTotal = totalList.Sum();
+
+                response.Data = grandTotal;
+                response.Message = "Total Cart Retrieved!";
+                return response;
+            }
+            
+            response.Data = 0;
+            response.Message = "Cart is empty!";
+            return response;
+
+        }
     }
 }

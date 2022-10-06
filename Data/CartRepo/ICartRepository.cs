@@ -15,5 +15,6 @@ namespace final_project.Data.CartRepo
         Task<ServiceResponse<CartProductDTO>> GetAllCart();
         Task<ServiceResponse<CartItem>> EditCart(CartItemDTO cartItemDTO);
         Task<ServiceResponse<CartItemDTO>> DeleteCart(int id);
+        Task<ServiceResponse<int>> GrandTotal();
     }
 }
